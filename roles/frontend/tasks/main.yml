@@ -1,4 +1,25 @@
-- name: Install nginx
+- name: Set Hostname
+  ansible.builtin.shell: set-hostname {{env}}-{{component}}
+
+- name: Install Nginx
   ansible.builtin.dnf:
     name: nginx
     state: present
+
+- name: Copy Expense Config file file
+  ansible.builtin.template:
+    src: expense.conf
+    dest: /etc/nginx/default.d/expense.conf
+    owner: bin
+    group: wheel
+
+- name: Run tasks/other.yaml instead of 'main'
+  ansible.builtin.import_role:
+    name: myrole
+    tasks_from: other
+
+- name: Starting Nginx Service
+  ansible.builtin.systemd:
+    name: nginx
+    state: reloaded
+    enabled: yes
