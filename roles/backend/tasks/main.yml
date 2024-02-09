@@ -32,6 +32,8 @@
 
 - name: Download NodeJs Dependencies
   ansible.builtin.shell: npm install
+  args:
+    chdir: /app
 
 - name: Install MySQL Clint
   ansible.builtin.dnf:
