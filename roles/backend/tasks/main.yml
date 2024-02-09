@@ -46,6 +46,6 @@
 - name: Start backend Service
   ansible.builtin.systemd:
     name: nginx
-    state: reloaded
+    state: restared
     enabled: yes
     daemon_reload: yes
