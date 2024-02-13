@@ -15,7 +15,13 @@
     name: filebeat
     state: installed
 
-- name: Copy fileneat configuration
+- name: Copy Elastic YUM Repo file
+  ansible.builtin.template:
+    src: elastic.repo
+    dest: /etc/yum.repos.d/elastic.repo
+
+
+- name: Copy filebeat configuration
   ansible.builtin.template:
     src: filebeat.yml
     dest: /etc/filebeat/filebeat.yml
