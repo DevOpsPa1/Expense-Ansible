@@ -10,16 +10,15 @@
     state: restarted
   when: is_rsyslog_needed
 
-- name: Install filebeat
-  ansible.builtin.dnf:
-    name: filebeat
-    state: installed
-
 - name: Copy Elastic YUM Repo file
   ansible.builtin.template:
     src: elastic.repo
     dest: /etc/yum.repos.d/elastic.repo
 
+- name: Install filebeat
+  ansible.builtin.dnf:
+    name: filebeat
+    state: installed
 
 - name: Copy filebeat configuration
   ansible.builtin.template:
