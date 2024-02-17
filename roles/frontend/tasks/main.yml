@@ -27,3 +27,8 @@
     state: reloaded
     enabled: yes
 
+- name: Import ELK -role filebeat
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat
+
