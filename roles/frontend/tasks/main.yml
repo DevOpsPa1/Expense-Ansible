@@ -37,5 +37,10 @@
     name: prometheus
     tasks_from: node-exporter
 
+- name: Starting prometheus Service
+  ansible.builtin.systemd:
+    name: prometheus
+    state: restarted
+    enabled: yes
 
 
