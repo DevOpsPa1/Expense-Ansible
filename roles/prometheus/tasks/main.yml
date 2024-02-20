@@ -2,3 +2,9 @@
   ansible.builtin.template:
     src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
+
+- name: Starting prometheus Service
+  ansible.builtin.systemd:
+    name: prometheus
+    state: reloaded
+    enabled: yes
