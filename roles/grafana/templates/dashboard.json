@@ -25,22 +25,22 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d5b266f3-45de-4d6c-8122-296c04060162"
+        "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
       },
       "fieldConfig": {
         "defaults": {
           "mappings": [
             {
               "options": {
-                "0": {
+                "down": {
                   "color": "red",
                   "index": 1,
-                  "text": "DOWN"
+                  "text": "0"
                 },
-                "1": {
+                "up": {
                   "color": "green",
                   "index": 0,
-                  "text": "UP"
+                  "text": "1"
                 }
               },
               "type": "value"
@@ -50,22 +50,23 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "green",
-                "value": 1
+                "color": "red",
+                "value": 80
               }
             ]
           },
-          "unit": "short"
+          "unit": "short",
+          "unitScale": true
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 3,
+        "h": 7,
+        "w": 9,
         "x": 0,
         "y": 0
       },
@@ -82,33 +83,32 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.1",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d5b266f3-45de-4d6c-8122-296c04060162"
+            "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
           },
           "editorMode": "code",
-          "expr": "up{name=\"{{env}}-{{component}}\"}",
+          "expr": "up{name=\"frontend\"}",
           "instant": false,
-        {% raw %}
-        "legendFormat": "{{instance}}",
-        {% endraw %}
-        "range": true,
-        "refId": "A"
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
         }
       ],
-      "title": "UP",
+      "title": "Up",
       "type": "stat"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d5b266f3-45de-4d6c-8122-296c04060162"
+        "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
       },
       "fieldConfig": {
         "defaults": {
@@ -131,7 +131,7 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "linear",
+            "lineInterpolation": "stepBefore",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -158,64 +158,71 @@
               {
                 "color": "red",
                 "value": 80
+              },
+              {
+                "color": "#EAB839",
+                "value": 90
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 9,
-        "x": 3,
+        "x": 9,
         "y": 0
       },
       "id": 2,
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d5b266f3-45de-4d6c-8122-296c04060162"
+            "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
           },
           "editorMode": "code",
-          "expr": "(node_memory_MemFree_bytes{name=\"{{env}}-{{component}}\"} + node_memory_Cached_bytes{name=\"{{env}}-{{component}}\"} + node_memory_Buffers_bytes{name=\"{{env}}-{{component}}\"}) / node_memory_MemTotal_bytes{name=\"{{env}}-{{component}}\"} * 100",
+          "expr": "100* (1-((node_memory_MemFree_bytes{name=\"frontend\"} + node_memory_Cached_bytes {name=\"frontend\"} + node_memory_Buffers_bytes{name=\"frontend\"} ) / node_memory_MemTotal_bytes{name=\"frontend\"} ))",
           "instant": false,
         {% raw %}
         "legendFormat": "{{name}}",
         {% endraw %}
-        "range": true,
-        "refId": "A"
+          "range": true,
+          "refId": "A"
         }
       ],
-      "title": "Memory Used %",
+      "title": "Memory used %",
       "type": "timeseries"
     }
   ],
   "refresh": "",
-  "schemaVersion": 38,
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "{{component}}",
-  "version": 4,
+  "title": "dashboard20-2-24",
+  "uid": "d98ce2dc-85de-4264-be75-cf762bfd3e51",
+  "version": 7,
   "weekStart": ""
 }
