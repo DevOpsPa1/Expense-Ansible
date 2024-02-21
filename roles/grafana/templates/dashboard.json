@@ -198,7 +198,9 @@
           "editorMode": "code",
           "expr": "100* (1-((node_memory_MemFree_bytes{name=\"frontend\"} + node_memory_Cached_bytes {name=\"frontend\"} + node_memory_Buffers_bytes{name=\"frontend\"} ) / node_memory_MemTotal_bytes{name=\"frontend\"} ))",
           "instant": false,
+        { % raw % },
           "legendFormat": "{{name}}",
+        { % endraw % },
           "range": true,
           "refId": "A"
         }
@@ -220,7 +222,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "new",
-  "uid": "d98ce2dc-85de-4264-be75-cf762bfd3e51",
+  "uid": "d98ce2dc-85de-4264-be75-c762bfd3e51",
   "version": 6,
   "weekStart": ""
 }
