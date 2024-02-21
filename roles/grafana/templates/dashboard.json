@@ -32,15 +32,15 @@
           "mappings": [
             {
               "options": {
-                "0": {
+                "down": {
                   "color": "red",
                   "index": 1,
-                  "text": "DOWN"
+                  "text": "0"
                 },
-                "1": {
+                "up": {
                   "color": "green",
                   "index": 0,
-                  "text": "UP"
+                  "text": "1"
                 }
               },
               "type": "value"
@@ -95,11 +95,9 @@
             "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
           },
           "editorMode": "code",
-          "expr": "up",
+          "expr": "up{name=\"frontend\"}",
           "instant": false,
-         {% raw %}
-          "legendFormat": "{{name}}",
-         {% endraw %}
+          "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
@@ -160,6 +158,10 @@
               {
                 "color": "red",
                 "value": 80
+              },
+              {
+                "color": "#EAB839",
+                "value": 90
               }
             ]
           },
@@ -169,7 +171,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 8,
+        "w": 9,
         "x": 9,
         "y": 0
       },
@@ -186,6 +188,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -193,11 +196,9 @@
             "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
           },
           "editorMode": "code",
-          "expr": "100* (1-((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes))",
+          "expr": "100* (1-((node_memory_MemFree_bytes{name=\"frontend\"} + node_memory_Cached_bytes {name=\"frontend\"} + node_memory_Buffers_bytes{name=\"frontend\"} ) / node_memory_MemTotal_bytes{name=\"frontend\"} ))",
           "instant": false,
-        {% raw %},
           "legendFormat": "{{name}}",
-        {% endraw %},
           "range": true,
           "refId": "A"
         }
@@ -220,6 +221,6 @@
   "timezone": "",
   "title": "dashboard20-2-24",
   "uid": "d98ce2dc-85de-4264-be75-cf762bfd3e51",
-  "version": 3,
+  "version": 6,
   "weekStart": ""
 }
