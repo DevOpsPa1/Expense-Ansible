@@ -95,7 +95,7 @@
             "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
           },
           "editorMode": "code",
-          "expr": "up{name=\"{{env}}-{{component}}\"}",
+          "expr": "up{name=\"{{component}}\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -196,7 +196,7 @@
             "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
           },
           "editorMode": "code",
-          "expr": "100* (1-((node_memory_MemFree_bytes{name=\"{{env}}-{{component}}\"} + node_memory_Cached_bytes {name=\"{{env}}-{{component}}\"} + node_memory_Buffers_bytes{name=\"{{env}}-{{component}}\"} ) / node_memory_MemTotal_bytes{name=\"{{env}}-{{component}}\"} ))",
+          "expr": "100* (1-((node_memory_MemFree_bytes{name=\"{{component}}\"} + node_memory_Cached_bytes {name=\"{{component}}\"} + node_memory_Buffers_bytes{name=\"{{component}}\"} ) / node_memory_MemTotal_bytes{name=\"{{component}}\"} ))",
           "instant": false,
         {% raw %}
         "legendFormat": "{{name}}",
