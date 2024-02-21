@@ -95,7 +95,7 @@
             "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
           },
           "editorMode": "code",
-          "expr": "up{name=\"frontend\"}",
+          "expr": "up{name=\"{{env}}-{{component}}\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -196,7 +196,7 @@
             "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
           },
           "editorMode": "code",
-          "expr": "100* (1-((node_memory_MemFree_bytes{name=\"frontend\"} + node_memory_Cached_bytes {name=\"frontend\"} + node_memory_Buffers_bytes{name=\"frontend\"} ) / node_memory_MemTotal_bytes{name=\"frontend\"} ))",
+          "expr": "100* (1-((node_memory_MemFree_bytes{name=\"{{env}}-{{component}}\"} + node_memory_Cached_bytes {name=\"{{env}}-{{component}}\"} + node_memory_Buffers_bytes{name=\"{{env}}-{{component}}\"} ) / node_memory_MemTotal_bytes{name=\"{{env}}-{{component}}\"} ))",
           "instant": false,
         {% raw %}
         "legendFormat": "{{name}}",
@@ -221,7 +221,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "new",
+  "title": "{{component}}",
   "uid": "d98ce2dc-85de-4264-be75-cf762bfd3e51",
   "version": 7,
   "weekStart": ""
