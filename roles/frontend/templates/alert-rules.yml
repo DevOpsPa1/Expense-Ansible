@@ -1,0 +1,46 @@
+groups:
+  - name: {{component}}-{{env}}
+    rules:
+      - alert: CPUUsageAlert
+        expr: avg by (instance) (100 - (rate(node_cpu_seconds_total{mode="idle"}[5m]) * 100)) > 70
+        for: 1m
+        labels:
+          severity: Warning
+          component: {{component}}
+          env: {{env}}
+        annotations:
+          summary: Warning | CPU Usage Alert
+          description: "CPU usage is above 70% for the last 1 minute "
+
+      - alert: CPUUsageAlert
+        expr: avg by (instance) (100 - (rate(node_cpu_seconds_total{mode="idle"}[5m]) * 100)) > 90
+        for: 1m
+        labels:
+          severity: Critical
+          component: {{component}}
+          env: {{env}}
+        annotations:
+          summary: Critical | CPU Usage Alert
+          description: "CPU usage is above 90% for the last 1 minute "
+
+      - alert: MemoryUsedAlert
+        expr: ((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes) * 100 > 70
+        for: 1m
+        labels:
+          severity: Warning
+          component: {{component}}
+          env: {{env}}
+        annotations:
+          summary: Warning | Memory Used Alert
+          description: "Memory Usage  is above 70% for the last 1 minute "
+
+      - alert: MemoryUsedAlert
+        expr: ((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes) * 100 > 90
+        for: 1m
+        labels:
+          severity: Critical
+          component: {{component}}
+          env: {{env}}
+        annotations:
+          summary: Critical| Memory Used Alert
+          description: "Memory Usage  is above 90% for the last 1 minute "
