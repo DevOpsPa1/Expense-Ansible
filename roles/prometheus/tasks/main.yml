@@ -8,19 +8,27 @@
     src: alert-rules.yml
     dest: /opt/prometheus/alert-rules.yml
 
-- name: Starting prometheus Service
-  ansible.builtin.systemd:
-    name: prometheus
-    state: reloaded
-    enabled: yes
+- name: List objects in the source bucket
+  amazon.aws.s3_objects:
+      bucket: "bucket name"
+      mode: list
+  register: out
+
+- name: Download All the Objects from S3 Bucket Having Alert Files
+  amazon.aws.s3_object:
+    bucket: d76-prometheus-alert-rules
+    mode: get
+    object: "{{item}}"
+    dest: /opt/prometheus/alert-rules/{{item}}
+  loop: "{{out.s3_keys}}"
+
+- name: Reload Prometheus
+  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep  | awk '{print $2}')
 
 - name: Copy Alert manager config
   ansible.builtin.template:
     src: alertmanager.yml
     dest: /opt/alertmanager/alertmanager.yml
 
-- name: Starting prometheus Service
-  ansible.builtin.systemd:
-    name: prometheus
-    state: reloaded
-    enabled: yes
+- name: Reload AlertManager
+  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep  | awk '{print $2}')
