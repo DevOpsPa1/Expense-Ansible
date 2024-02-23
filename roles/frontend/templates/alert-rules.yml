@@ -66,3 +66,4 @@ groups:
         annotations:
           summary: Critical | Frontend Nginx Service Down
           description: " Frontend Nginx Service Down form last 1 minute "
+          ##
