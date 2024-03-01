@@ -8,10 +8,10 @@
     src: common.yml
     dest: /opt/prometheus/common.yml
 
-- name: List objects in the source bucket
-  amazon.aws.s3_objects:
-      bucket: bpk-prometheus-alerts
-      mode: list
+- name: List All files in Bucket
+  amazon.aws.s3_object:
+    bucket: bpk-prometheus-alerts
+    mode: list
   register: out
 
 - name: Download All the Objects from S3 Bucket Having Alert Files
