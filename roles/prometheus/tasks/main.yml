@@ -10,7 +10,7 @@
 
 - name: List objects in the source bucket
   amazon.aws.s3_objects:
-      bucket: "bucket name"
+      bucket: bpk-prometheus-alerts
       mode: list
   register: out
 
