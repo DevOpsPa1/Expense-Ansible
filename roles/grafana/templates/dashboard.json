@@ -108,7 +108,7 @@
           "editorMode": "code",
           "expr": "up{name=\"{{component}}\"}",
           "instant": false,
-          "legendFormat": "{{name}}",
+          "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
