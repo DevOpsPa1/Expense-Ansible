@@ -134,7 +134,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 60,
+            "fillOpacity": 36,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -142,7 +142,7 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "linear",
+            "lineInterpolation": "stepBefore",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -178,7 +178,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
+        "w": 6,
         "x": 8,
         "y": 0
       },
@@ -188,7 +188,7 @@
           "calcs": [],
           "displayMode": "hidden",
           "placement": "right",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "mode": "single",
@@ -202,7 +202,7 @@
             "uid": "ee9ab739-ce04-4ed2-b11e-a7e8ae34eaa5"
           },
           "editorMode": "code",
-          "expr": "100* (1-((node_memory_MemFree_bytes{name=\"{{component}}\"} + node_memory_Cached_bytes {name=\"{{component}}\"} + node_memory_Buffers_bytes{name=\"{{component}}\"} ) / node_memory_MemTotal_bytes{name=\"{{component}}\"} ))",
+          "expr":"100* (1-((node_memory_MemFree_bytes{name=\"{{component}}\"} + node_memory_Cached_bytes {name=\"{{component}}\"} + node_memory_Buffers_bytes{name=\"{{component}}\"} ) / node_memory_MemTotal_bytes{name=\"{{component}}\"} ))",
           "format": "time_series",
           "instant": false,
         {% raw %}
@@ -230,6 +230,6 @@
   "timezone": "",
   "title": "{{component}}",
   "uid": "d1dd167c-a565-4917-ae81-011ba49ccec6",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
