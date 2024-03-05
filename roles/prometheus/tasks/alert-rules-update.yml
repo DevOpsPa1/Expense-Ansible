@@ -10,7 +10,5 @@
 - name: Trigger Prometheus Reload Job
   ansible.builtin.shell: curl -u {{ lookup('amazon.aws.aws_ssm', 'jenkins.username', region='us-east-1' ) }}:{{ lookup('amazon.aws.aws_ssm', 'jenkins.password', region='us-east-1' ) }}  "http://172.31.83.150:8080/job/prometheus-reload/build?token=prometheus"
 
-    #JENKINS_URL/job/prometheus-reload/build?token=TOKEN_NAME
-#  curl -u admin:admin123 "https://172.31.83.150:8080/job/prometheus-reload/build?token=prometheus"
 
 
