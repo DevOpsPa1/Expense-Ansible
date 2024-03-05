@@ -18,29 +18,32 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
+        "uid": "ee9ab739-ce04-4ed2-b11e-a7e8ae34eaa5"
       },
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [
             {
               "options": {
-                "down": {
+                "0": {
                   "color": "red",
                   "index": 1,
-                  "text": "0"
+                  "text": "down"
                 },
-                "up": {
+                "1": {
                   "color": "green",
                   "index": 0,
-                  "text": "1"
+                  "text": "up"
                 }
               },
               "type": "value"
@@ -56,6 +59,14 @@
               {
                 "color": "red",
                 "value": 80
+              },
+              {
+                "color": "#EAB839",
+                "value": 90
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 100
               }
             ]
           },
@@ -65,8 +76,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 9,
+        "h": 5,
+        "w": 8,
         "x": 0,
         "y": 0
       },
@@ -92,23 +103,23 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
+            "uid": "ee9ab739-ce04-4ed2-b11e-a7e8ae34eaa5"
           },
           "editorMode": "code",
           "expr": "up{name=\"{{component}}\"}",
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{name}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Up",
+      "title": "UP",
       "type": "stat"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
+        "uid": "ee9ab739-ce04-4ed2-b11e-a7e8ae34eaa5"
       },
       "fieldConfig": {
         "defaults": {
@@ -123,7 +134,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 15,
+            "fillOpacity": 60,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -131,7 +142,7 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "stepBefore",
+            "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -158,10 +169,6 @@
               {
                 "color": "red",
                 "value": 80
-              },
-              {
-                "color": "#EAB839",
-                "value": 90
               }
             ]
           },
@@ -170,9 +177,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 9,
-        "x": 9,
+        "h": 5,
+        "w": 5,
+        "x": 8,
         "y": 0
       },
       "id": 2,
@@ -181,22 +188,22 @@
           "calcs": [],
           "displayMode": "hidden",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b2a9fa5d-ad80-4fad-8752-df72c0bb23d6"
+            "uid": "ee9ab739-ce04-4ed2-b11e-a7e8ae34eaa5"
           },
           "editorMode": "code",
           "expr": "100* (1-((node_memory_MemFree_bytes{name=\"{{component}}\"} + node_memory_Cached_bytes {name=\"{{component}}\"} + node_memory_Buffers_bytes{name=\"{{component}}\"} ) / node_memory_MemTotal_bytes{name=\"{{component}}\"} ))",
+          "format": "time_series",
           "instant": false,
         {% raw %}
         "legendFormat": "{{name}}",
@@ -222,7 +229,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "{{component}}",
-  "uid": "d98ce2dc-85de-4264-be75-cf762bfd3e51",
-  "version": 7,
+  "uid": "d1dd167c-a565-4917-ae81-011ba49ccec6",
+  "version": 4,
   "weekStart": ""
 }
